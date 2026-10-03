@@ -30,10 +30,9 @@ def cargar_datos(ruta: str) -> dict:
     """
     try:
         with open(ruta, 'r', encoding="utf-8") as f:
-            contenido = json.load(f)
 
             try:
-                return contenido
+                return json.load(f)
             except json.JSONDecodeError:
                 raise ErrorArchivoCorrupto(
                     "El archivo de datos no es un JSON válido."
@@ -43,7 +42,7 @@ def cargar_datos(ruta: str) -> dict:
         return ESTRUCTURA_VACIA
     except PermissionError:
         raise ErrorPermisos(
-            "No se pudo leer: sin permisos de lecutra."
+            "No se pudo leer: sin permisos de lectura."
             "Verifique los permisos e intente nuevamente."
         )
 
